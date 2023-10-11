@@ -2,6 +2,7 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace Systems {
@@ -26,6 +27,12 @@ namespace Systems {
 
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             
+            var spawnerOffset = new float3(0f, -2f, 0f);
+            
+            var builder = new BlobBuilder(Allocator.Temp);
+            ref var spawnPoints = ref builder.ConstructRoot<AlienSpawnPointsBlob>();
+            var arrayBuilder = builder.Allocate(ref spawnPoints.Value, planet.NumberSpawnersToSpawn);
+            
             for (var i = 0; i < planet.NumberSpawnersToSpawn; i++) {
                 var newSpawner = ecb.Instantiate(planet.SpawnerPrefab);
                 var newSpawnerTransform = planet.GetRandomSpawnerTransform();
@@ -34,7 +41,14 @@ namespace Systems {
                     Scale = newSpawnerTransform.Scale,
                     Rotation = newSpawnerTransform.Rotation
                 });
+                var newAlienSpawnPoint = newSpawnerTransform.Position + spawnerOffset;
+                arrayBuilder[i] = newAlienSpawnPoint;
             }
+
+            var blobAsset = builder.CreateBlobAssetReference<AlienSpawnPointsBlob>(Allocator.Persistent);
+            ecb.SetComponent(planetEntity, new AlienSpawnPoints{Value =  blobAsset});
+            builder.Dispose();
+
             ecb.Playback(state.EntityManager);
         }
     }
