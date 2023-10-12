@@ -37,6 +37,7 @@ namespace Systems {
 
             if (!alien.IsAboveGround) return;
             ecb.RemoveComponent<AlienProperties.RiseRate>(sortKey, alien.Entity);
+            ecb.SetComponentEnabled<AlienProperties.Walk>(sortKey, alien.Entity, true);
         }
     }
 }
