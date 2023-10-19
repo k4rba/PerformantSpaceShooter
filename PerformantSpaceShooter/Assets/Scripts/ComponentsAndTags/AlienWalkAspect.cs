@@ -23,7 +23,7 @@ namespace ComponentsAndTags {
 
         public void Walk(float deltaTime) {
             WalkTimer += deltaTime;
-            _transform.ValueRW.Position += _transform.ValueRO.Forward() * WalkSpeed * deltaTime;
+            _transform.ValueRW.Position.y += _transform.ValueRO.Position.y * WalkSpeed * deltaTime;
         }
     }
 }

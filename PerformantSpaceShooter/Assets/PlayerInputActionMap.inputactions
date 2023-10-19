@@ -1,0 +1,76 @@
+{
+    "name": "PlayerInputActionMap",
+    "maps": [
+        {
+            "name": "PlayerInputMap",
+            "id": "7c2872b6-1be7-4f11-a732-013bb9e3ef96",
+            "actions": [
+                {
+                    "name": "PlayerMoveInput",
+                    "type": "Value",
+                    "id": "8fa12496-7d2f-4743-a2ce-0bd9d15b098d",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "PlayerShootInput",
+                    "type": "Button",
+                    "id": "4d860a19-afbd-45e3-8485-39ab891f773c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "f9e0dde1-2b17-43e9-b562-822e7639f7d4",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerMoveInput",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "4b5ee331-23ac-446b-8261-22f43ca6e8fb",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerMoveInput",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "aa5dd2f5-0b10-4ba4-a242-b15d2c4ab53b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerMoveInput",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d2c70535-022c-4229-87e1-0730dd3bb43c",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PlayerShootInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

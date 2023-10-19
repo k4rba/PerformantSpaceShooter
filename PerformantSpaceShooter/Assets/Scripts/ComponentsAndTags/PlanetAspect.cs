@@ -25,8 +25,7 @@ namespace ComponentsAndTags {
 
         public Entity SpawnerPrefab => _planetProperties.ValueRO.SpawnerPrefab;
 
-        
-        
+
         public BlobArray<float3> AlienSpawnPoints {
             get => _alienSpawnPoints.ValueRO.Value.Value.Value;
             set => _alienSpawnPoints.ValueRW.Value.Value.Value = value;
@@ -49,22 +48,18 @@ namespace ComponentsAndTags {
         private float3 GetRandomPosition() {
             
             float3 randomPosition;
-            do {
-            randomPosition = _planetRandom.ValueRW.Value.NextFloat3(MinCorner, MaxCorner);
-
-            } while (math.distancesq(_localTransform.ValueRO.Position, randomPosition) <= SPACESHIP_SAFETY_RADIUS_SQ);
+            randomPosition = _planetRandom.ValueRW.Value.NextFloat3(MinX, MaxX);
             return randomPosition;
         }
 
-        private float3 MinCorner => _localTransform.ValueRO.Position - HalfDimensions;
-        private float3 MaxCorner => _localTransform.ValueRO.Position + HalfDimensions;
+        private float3 MinX => _localTransform.ValueRO.Position.x - HalfDimensions;
+        private float3 MaxX => _localTransform.ValueRO.Position.x + HalfDimensions;
         private float3 HalfDimensions => new() {
-            x = _planetProperties.ValueRO.FieldDimensions.x * 0.5f,
+            x = _planetProperties.ValueRO.FieldDimensions.x,
             y = 0f,
-            z = _planetProperties.ValueRO.FieldDimensions.y * 0.5f
+            z = 0f
         };
-
-        private const float SPACESHIP_SAFETY_RADIUS_SQ = 5f;
+        
         
         private quaternion GetRandomRotation => quaternion.RotateY(_planetRandom.ValueRW.Value.NextFloat(-0.25f, 0.25f));
         private float GetRandomScale(float min) => _planetRandom.ValueRW.Value.NextFloat(min, 1f);
@@ -84,7 +79,7 @@ namespace ComponentsAndTags {
             var position = GetRandomAlienSpawnPoint();
             return new LocalTransform {
                 Position = position,
-                Rotation = quaternion.RotateY(MathHelper.GetHeading(position, _localTransform.ValueRO.Position)),
+                Rotation = quaternion.identity,
                 Scale = 1f
             };
         }
