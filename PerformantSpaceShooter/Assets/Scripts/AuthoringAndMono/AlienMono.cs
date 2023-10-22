@@ -1,5 +1,7 @@
 ﻿using ComponentsAndTags;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 using UnityEngine;
 
 namespace AuthoringAndMono {
@@ -8,6 +10,7 @@ namespace AuthoringAndMono {
         public float RiseRate;
         public float WalkAmplitude;
         public float WalkFrequency;
+        public float3 AlienPosition;
     }
 
     public class AlienBaker : Baker<AlienMono> {
@@ -22,6 +25,7 @@ namespace AuthoringAndMono {
             AddComponent<AlienProperties.Timer>();
             AddComponent<AlienProperties.AlienHeading>();
             AddComponent<AlienProperties.NewAlienTag>();
+            AddComponent(new AlienProperties.AlienPosition{Value = authoring.AlienPosition, AssosiatedEntity = entity});
         }
     }
 }

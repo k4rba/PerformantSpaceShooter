@@ -1,4 +1,6 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace ComponentsAndTags {
     public static class AlienProperties {
@@ -6,6 +8,11 @@ namespace ComponentsAndTags {
             public float WalkSpeed;
             public float WalkAmplitude;
             public float WalkFrequency;
+        }
+
+        public struct AlienPosition : IComponentData {
+            public float3 Value;
+            public Entity AssosiatedEntity;
         }
 
         public struct Timer : IComponentData {

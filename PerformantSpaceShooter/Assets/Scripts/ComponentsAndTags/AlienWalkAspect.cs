@@ -1,15 +1,18 @@
 ﻿using Unity.Entities;
+using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace ComponentsAndTags {
     public readonly partial struct AlienWalkAspect : IAspect {
         public readonly Entity Entity;
 
+        private readonly RefRW<AlienProperties.AlienPosition> _enemyPos;
         private readonly RefRW<LocalTransform> _transform;
         private readonly RefRW<AlienProperties.Timer> _walkTimer;
         private readonly RefRW<AlienProperties.Walk> _walkProperties;
         private readonly RefRW<AlienProperties.AlienHeading> _heading;
 
+        private float3 AlienPosition => _enemyPos.ValueRO.Value;
         private float WalkSpeed => _walkProperties.ValueRO.WalkSpeed;
         private float WalkAmplitude => _walkProperties.ValueRO.WalkAmplitude;
         private float WalkFrequency => _walkProperties.ValueRO.WalkFrequency;
@@ -24,6 +27,7 @@ namespace ComponentsAndTags {
         public void Walk(float deltaTime) {
             WalkTimer += deltaTime;
             _transform.ValueRW.Position.y += _transform.ValueRO.Position.y * WalkSpeed * deltaTime;
+            _enemyPos.ValueRW.Value = _transform.ValueRO.Position;
         }
     }
 }

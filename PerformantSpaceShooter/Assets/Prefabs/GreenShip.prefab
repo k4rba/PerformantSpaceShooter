@@ -123,3 +123,7 @@ MonoBehaviour:
   RiseRate: 0.5
   WalkAmplitude: 0.5
   WalkFrequency: 1
+  AlienPosition:
+    x: 0
+    y: 0
+    z: 0

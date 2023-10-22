@@ -11,6 +11,9 @@ namespace AuthoringAndMono {
             public override void Bake(ProjectileMono authoring) {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new PlayerProjectileMoveSpeed{Value = authoring.ProjectileMoveSpeed});
+                AddComponent(entity, new ProjectilePosition{AssociatedEntity = entity});
+                AddComponent(entity, new ProjectileTag());
+                AddComponent(entity, new PlayerProperties.ProjectilePrefab());
             }
         }
     }
