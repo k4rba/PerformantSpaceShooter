@@ -15,7 +15,7 @@ namespace Systems {
             foreach (var projPosition in SystemAPI.Query<RefRW<ProjectilePosition>>()) {
                 foreach (var enemyPosition in SystemAPI.Query<RefRW<AlienProperties.AlienPosition>>()) {
                     float distance = math.distance(projPosition.ValueRO.Value, enemyPosition.ValueRO.Value);
-                    if (distance < 1f) {
+                    if (distance < 2f) {
                         ecb.DestroyEntity(projPosition.ValueRO.AssociatedEntity);
                         ecb.DestroyEntity(enemyPosition.ValueRO.AssosiatedEntity);
                     }
