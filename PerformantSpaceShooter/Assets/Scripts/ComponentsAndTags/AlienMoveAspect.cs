@@ -3,7 +3,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace ComponentsAndTags {
-    public readonly partial struct AlienWalkAspect : IAspect {
+    public readonly partial struct AlienMoveAspect : IAspect {
         public readonly Entity Entity;
 
         private readonly RefRW<AlienProperties.AlienPosition> _enemyPos;
@@ -24,7 +24,7 @@ namespace ComponentsAndTags {
             set => _walkTimer.ValueRW.Value = value;
         }
 
-        public void Walk(float deltaTime) {
+        public void Move(float deltaTime) {
             WalkTimer += deltaTime;
             _transform.ValueRW.Position.y += _transform.ValueRO.Position.y * WalkSpeed * deltaTime;
             _enemyPos.ValueRW.Value = _transform.ValueRO.Position;

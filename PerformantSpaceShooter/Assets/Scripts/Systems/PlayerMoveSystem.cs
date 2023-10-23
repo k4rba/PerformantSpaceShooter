@@ -27,7 +27,15 @@ namespace Systems {
                 if (math.lengthsq(moveInput.Value) > float.Epsilon) {
                     var forward = new float3(moveInput.Value.x, 0, 0);
                 }
+
+                if (transform.Position.x < -13) {
+                    transform.Position.x = -13;
+                }
+                if (transform.Position.x > 13) {
+                    transform.Position.x = 13;
+                }
             }
+            
         }
     }
 }

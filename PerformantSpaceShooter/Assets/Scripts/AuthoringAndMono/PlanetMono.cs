@@ -1,7 +1,6 @@
 ﻿using ComponentsAndTags;
 using Unity.Entities;
 using Unity.Mathematics;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 

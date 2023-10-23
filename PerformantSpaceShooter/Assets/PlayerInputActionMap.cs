@@ -83,7 +83,7 @@ public partial class @PlayerInputActionMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""d2c70535-022c-4229-87e1-0730dd3bb43c"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -1,4 +1,5 @@
 ﻿using ComponentsAndTags;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Scenes;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Systems {
     public partial class GetPlayerInputSystem : SystemBase {
         private PlayerInputActionMap _movementActions;
         private Entity _playerEntity;
-        
+
         protected override void OnCreate() {
 
             RequireForUpdate<PlayerProperties.PlayerTag>();

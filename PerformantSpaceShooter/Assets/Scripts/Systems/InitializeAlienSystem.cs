@@ -21,7 +21,7 @@ namespace Systems {
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
-            foreach (var alien in SystemAPI.Query<AlienWalkAspect>().WithAll<AlienProperties.NewAlienTag>()) {
+            foreach (var alien in SystemAPI.Query<AlienMoveAspect>().WithAll<AlienProperties.NewAlienTag>()) {
                 ecb.RemoveComponent<AlienProperties.NewAlienTag>(alien.Entity);
                 ecb.SetComponentEnabled<AlienProperties.Walk>(alien.Entity, false);
             }

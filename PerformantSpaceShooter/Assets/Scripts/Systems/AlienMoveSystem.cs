@@ -35,9 +35,8 @@ namespace Systems {
         
 
         [BurstCompile]
-        private void Execute(AlienWalkAspect alien) {
-            
-            alien.Walk(DeltaTime);
+        private void Execute(AlienMoveAspect alien) {
+            alien.Move(DeltaTime);
         }
     }
 }
