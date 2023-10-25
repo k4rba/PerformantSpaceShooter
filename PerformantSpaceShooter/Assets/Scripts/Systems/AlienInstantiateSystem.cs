@@ -1,9 +1,11 @@
 ﻿using ComponentsAndTags;
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Systems {
+    
     
     [BurstCompile]
     public partial struct AlienInstantiateSystem : ISystem {
@@ -32,11 +34,13 @@ namespace Systems {
     public partial struct SpawnAlienJob : IJobEntity {
         public float DeltaTime;
         public EntityCommandBuffer ecb;
-        
+
         private void Execute(PlanetAspect planet) {
             planet.AlienSpawnTimer -= DeltaTime;
             if (!planet.TimeToSpawnAlien) return;
             if (!planet.AlienSpawnPointsInitialized()) return;
+
+            planet.AlienAmount++;
             
             planet.AlienSpawnTimer = planet.AlienSpawnRate;
             var newAlien = ecb.Instantiate(planet.AlienPrefab);

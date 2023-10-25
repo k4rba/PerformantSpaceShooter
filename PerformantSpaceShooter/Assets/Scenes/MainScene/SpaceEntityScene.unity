@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2270448269136578914, guid: 88a88fa175e93c843af21ec2db04e123, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -29.9
+      value: -66.31
       objectReference: {fileID: 0}
     - target: {fileID: 2270448269136578914, guid: 88a88fa175e93c843af21ec2db04e123, type: 3}
       propertyPath: m_LocalPosition.z
@@ -236,7 +236,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 515851267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -384,12 +384,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FieldDimensions:
-    x: 10
+    x: 30
     y: 0
-  NumberSpawnersToSpawn: 200
+  NumberSpawnersToSpawn: 300
   SpawnerPrefab: {fileID: 3177346668905523904, guid: f7f05d6cc238b0045bd1d3d855f548fb, type: 3}
   AlienPrefab: {fileID: 3252173555874734261, guid: 680c66e67f711f04ab8d79e078ff5159, type: 3}
-  AlienSpawnRate: 0.2
+  AlienSpawnRate: 0.0001
+  NumberOfAliens: 0
   RandomSeed: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

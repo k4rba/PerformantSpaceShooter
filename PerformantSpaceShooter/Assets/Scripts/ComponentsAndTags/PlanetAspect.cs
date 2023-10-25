@@ -21,7 +21,10 @@ namespace ComponentsAndTags {
 
         private readonly RefRW<AlienSpawnTimer> _alienSpawnTimer;
 
+        private readonly RefRW<AmountOfAliens> _amntOfAliens;
+
         public int NumberSpawnersToSpawn => _planetProperties.ValueRO.NumberOfSpawnersToSpawn;
+        
 
         public Entity SpawnerPrefab => _planetProperties.ValueRO.SpawnerPrefab;
 
@@ -31,7 +34,12 @@ namespace ComponentsAndTags {
             set => _alienSpawnPoints.ValueRW.Value.Value.Value = value;
         }
 
-        public bool AlienSpawnPointsInitialized() {
+        public int AlienAmount {
+            get => _amntOfAliens.ValueRO.Value;
+            set => _amntOfAliens.ValueRW.Value = value;
+        }
+
+            public bool AlienSpawnPointsInitialized() {
             return _alienSpawnPoints.ValueRO.Value.IsCreated && AlienSpawnPointCount > 0;
         }
 

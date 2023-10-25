@@ -11,6 +11,7 @@ namespace AuthoringAndMono {
         public GameObject SpawnerPrefab;
         public GameObject AlienPrefab;
         public float AlienSpawnRate;
+        public int NumberOfAliens;
         public uint RandomSeed;
     }
 
@@ -24,12 +25,13 @@ namespace AuthoringAndMono {
                 AlienPrefab = GetEntity(authoring.AlienPrefab, TransformUsageFlags.Dynamic),
                 AlienSpawnRate = authoring.AlienSpawnRate
             });
-            
+            AddComponent(entity, new PlanetTag());
             AddComponent(entity, new PlanetRandom {
                 Value =  Random.CreateFromIndex(authoring.RandomSeed)
             });
             AddComponent<AlienSpawnPoints>();
             AddComponent<AlienSpawnTimer>();
+            AddComponent(entity, new AmountOfAliens{Value = 0});
         }
     }
 }

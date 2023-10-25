@@ -10,6 +10,8 @@ using UnityEngine;
 namespace Systems {
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
     public partial struct CollisionSystem : ISystem {
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach (var projPosition in SystemAPI.Query<RefRW<ProjectilePosition>>()) {

@@ -1,4 +1,5 @@
 ﻿using ComponentsAndTags;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -6,10 +7,12 @@ using Unity.Mathematics;
 namespace Systems {
     [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
     public partial struct DestroyProjectileSystem : ISystem {
+        
+        [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach (var projPosition in SystemAPI.Query<RefRW<ProjectilePosition>>()) {
-                if (projPosition.ValueRO.Value.y > 0f) {
+                if (projPosition.ValueRO.Value.y > 20f) {
                     ecb.DestroyEntity(projPosition.ValueRO.AssociatedEntity);
                 }
             }

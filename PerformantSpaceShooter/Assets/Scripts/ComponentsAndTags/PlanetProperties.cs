@@ -9,9 +9,17 @@ namespace ComponentsAndTags {
         public Entity SpawnerPrefab;
         public Entity AlienPrefab;
         public float AlienSpawnRate;
+        public int NumOfAliens;
     }
 
     public struct AlienSpawnTimer : IComponentData {
         public float Value;
+    }
+
+    public struct AmountOfAliens : IComponentData {
+        public int Value;
+    }
+
+    public struct PlanetTag : IComponentData {
     }
 }
