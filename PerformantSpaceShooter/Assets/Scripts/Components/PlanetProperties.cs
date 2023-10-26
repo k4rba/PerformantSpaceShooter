@@ -11,6 +11,10 @@ namespace Components {
         public float AlienSpawnRate;
     }
 
+    public struct RandomValue : IComponentData {
+        public Random Value;
+    }
+    
     public struct AlienSpawnTimer : IComponentData {
         public float Value;
     }

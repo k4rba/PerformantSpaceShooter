@@ -19,14 +19,9 @@ namespace Aspects {
         private float WalkFrequency => _walkProperties.ValueRO.WalkFrequency;
         private float Heading => _heading.ValueRO.Value;
 
-
-        private float WalkTimer {
-            get => _walkTimer.ValueRO.Value;
-            set => _walkTimer.ValueRW.Value = value;
-        }
+        
 
         public void Move(float deltaTime) {
-            WalkTimer += deltaTime;
             _transform.ValueRW.Position.y += _transform.ValueRO.Position.y * WalkSpeed * deltaTime;
             _enemyPos.ValueRW.Value = _transform.ValueRO.Position;
         }

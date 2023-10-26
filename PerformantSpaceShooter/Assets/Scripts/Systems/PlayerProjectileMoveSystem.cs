@@ -1,9 +1,7 @@
-﻿using Aspects;
+﻿using Components;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
-using Utilities;
 
 namespace Systems {
     [BurstCompile]

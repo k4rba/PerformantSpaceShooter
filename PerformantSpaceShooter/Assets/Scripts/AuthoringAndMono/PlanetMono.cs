@@ -26,7 +26,7 @@ namespace AuthoringAndMono {
                 AlienSpawnRate = authoring.AlienSpawnRate
             });
             AddComponent(entity, new PlanetTag());
-            AddComponent(entity, new PlanetRandom {
+            AddComponent(entity, new RandomValue() {
                 Value =  Random.CreateFromIndex(authoring.RandomSeed)
             });
             AddComponent<AlienSpawnPoints>(entity);

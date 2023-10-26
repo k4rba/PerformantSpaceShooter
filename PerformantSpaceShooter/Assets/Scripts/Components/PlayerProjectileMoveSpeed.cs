@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace Aspects {
+namespace Components{
     public struct PlayerProjectileMoveSpeed : IComponentData {
         public float Value;
     }

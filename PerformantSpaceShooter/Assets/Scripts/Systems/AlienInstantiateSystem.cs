@@ -27,14 +27,13 @@ namespace Systems {
         private void Execute(PlanetAspect planet, [EntityIndexInQuery] int sortKey) {
             planet.AlienSpawnTimer -= DeltaTime;
             if (!planet.TimeToSpawnAlien) return;
-            if (!planet.AlienSpawnPointsInitialized()) return;
 
             planet.AlienAmount++;
             
             planet.AlienSpawnTimer = planet.AlienSpawnRate;
             var newAlien = ecb.Instantiate(sortKey, planet.AlienPrefab);
 
-            var newAlienTransform = planet.GetAlienSpawnPoint();
+            var newAlienTransform = planet.GetRandomAlienSpawnPoint();
             ecb.SetComponent(sortKey, newAlien, newAlienTransform);
         }
     }
