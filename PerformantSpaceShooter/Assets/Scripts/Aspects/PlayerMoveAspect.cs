@@ -1,6 +1,7 @@
-﻿using Unity.Entities;
+﻿using Components;
+using Unity.Entities;
 
-namespace ComponentsAndTags {
+namespace Aspects {
     public readonly partial struct PlayerMoveAspect : IAspect {
         public readonly Entity Entity;
 

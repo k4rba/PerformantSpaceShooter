@@ -1,9 +1,9 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ComponentsAndTags {
+namespace Components {
     public static class AlienProperties {
-        public struct Walk : IComponentData, IEnableableComponent {
+        public struct Walk : IComponentData {
             public float WalkSpeed;
             public float WalkAmplitude;
             public float WalkFrequency;
@@ -15,10 +15,6 @@ namespace ComponentsAndTags {
         }
 
         public struct Timer : IComponentData {
-            public float Value;
-        }
-
-        public struct RiseRate : IComponentData {
             public float Value;
         }
 

@@ -1,8 +1,9 @@
-﻿using Unity.Entities;
+﻿using Components;
+using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace ComponentsAndTags {
+namespace Aspects {
     public readonly partial struct AlienMoveAspect : IAspect {
         public readonly Entity Entity;
 

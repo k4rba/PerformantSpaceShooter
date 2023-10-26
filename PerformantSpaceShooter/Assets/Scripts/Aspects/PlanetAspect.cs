@@ -1,4 +1,5 @@
-﻿using Unity.Collections;
+﻿using Components;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -7,7 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using Utilities;
 
-namespace ComponentsAndTags {
+namespace Aspects {
     public readonly partial struct PlanetAspect : IAspect {
         public readonly Entity Entity;
 
@@ -24,7 +25,7 @@ namespace ComponentsAndTags {
         private readonly RefRW<AmountOfAliens> _amntOfAliens;
 
         public int NumberSpawnersToSpawn => _planetProperties.ValueRO.NumberOfSpawnersToSpawn;
-        
+
 
         public Entity SpawnerPrefab => _planetProperties.ValueRO.SpawnerPrefab;
 
@@ -39,7 +40,9 @@ namespace ComponentsAndTags {
             set => _amntOfAliens.ValueRW.Value = value;
         }
 
-            public bool AlienSpawnPointsInitialized() {
+        
+        //todo: check
+        public bool AlienSpawnPointsInitialized() {
             return _alienSpawnPoints.ValueRO.Value.IsCreated && AlienSpawnPointCount > 0;
         }
 
@@ -54,7 +57,6 @@ namespace ComponentsAndTags {
         }
 
         private float3 GetRandomPosition() {
-            
             float3 randomPosition;
             randomPosition = _planetRandom.ValueRW.Value.NextFloat3(MinX, MaxX);
             return randomPosition;
@@ -62,14 +64,17 @@ namespace ComponentsAndTags {
 
         private float3 MinX => _localTransform.ValueRO.Position.x - HalfDimensions;
         private float3 MaxX => _localTransform.ValueRO.Position.x + HalfDimensions;
+
         private float3 HalfDimensions => new() {
             x = _planetProperties.ValueRO.FieldDimensions.x,
             y = 0f,
             z = 0f
         };
-        
-        
-        private quaternion GetRandomRotation => quaternion.RotateY(_planetRandom.ValueRW.Value.NextFloat(-0.25f, 0.25f));
+
+
+        private quaternion GetRandomRotation =>
+            quaternion.RotateY(_planetRandom.ValueRW.Value.NextFloat(-0.25f, 0.25f));
+
         private float GetRandomScale(float min) => _planetRandom.ValueRW.Value.NextFloat(min, 1f);
 
         public float AlienSpawnTimer {

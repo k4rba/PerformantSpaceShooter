@@ -1,8 +1,8 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ComponentsAndTags {
-    public static class PlayerProperties {
+namespace Components {
+    public struct PlayerProperties {
         public struct Move : IComponentData {
             public float MoveSpeed;
         }

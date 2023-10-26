@@ -1,41 +1,30 @@
-﻿using ComponentsAndTags;
+﻿using Aspects;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
 namespace Systems {
-    
-    
     [BurstCompile]
     public partial struct AlienInstantiateSystem : ISystem {
-        [BurstCompile]
-        public void OnCreate(ref SystemState state) {
-            
-        }
-        
-        [BurstCompile]
-        public void OnDestroy(ref SystemState state) {
-            
-        }
-
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             var deltaTime = SystemAPI.Time.DeltaTime;
             var ecbSingleton = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             new SpawnAlienJob() {
                 DeltaTime = deltaTime,
-                ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged)
-            }.Run();
+                ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged).AsParallelWriter()
+            }.ScheduleParallel();
         }
     }
     
     [BurstCompile]
     public partial struct SpawnAlienJob : IJobEntity {
         public float DeltaTime;
-        public EntityCommandBuffer ecb;
+        public EntityCommandBuffer.ParallelWriter ecb;
 
-        private void Execute(PlanetAspect planet) {
+        [BurstCompile]
+        private void Execute(PlanetAspect planet, [EntityIndexInQuery] int sortKey) {
             planet.AlienSpawnTimer -= DeltaTime;
             if (!planet.TimeToSpawnAlien) return;
             if (!planet.AlienSpawnPointsInitialized()) return;
@@ -43,10 +32,10 @@ namespace Systems {
             planet.AlienAmount++;
             
             planet.AlienSpawnTimer = planet.AlienSpawnRate;
-            var newAlien = ecb.Instantiate(planet.AlienPrefab);
+            var newAlien = ecb.Instantiate(sortKey, planet.AlienPrefab);
 
             var newAlienTransform = planet.GetAlienSpawnPoint();
-            ecb.SetComponent(newAlien, newAlienTransform);
+            ecb.SetComponent(sortKey, newAlien, newAlienTransform);
         }
     }
 }

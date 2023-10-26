@@ -1,4 +1,4 @@
-﻿using ComponentsAndTags;
+﻿using Components;
 using Unity.Entities;
 using UnityEngine;
 

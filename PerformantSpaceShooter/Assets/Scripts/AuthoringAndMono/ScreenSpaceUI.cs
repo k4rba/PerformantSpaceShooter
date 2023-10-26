@@ -1,5 +1,6 @@
 ﻿using System;
-using ComponentsAndTags;
+using Aspects;
+using Components;
 using TMPro;
 using Unity.Entities;
 using Unity.VisualScripting;
@@ -18,7 +19,6 @@ namespace AuthoringAndMono {
         }
 
         private void Update() {
-            Debug.Log("asd");
             var currentAmountOfAliens = _entityManager.GetComponentData<AmountOfAliens>(_planetEntity).Value;
             _amountOfAliens.text = $"Current Alien Amount: {currentAmountOfAliens}";
         }

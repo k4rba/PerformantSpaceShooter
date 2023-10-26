@@ -1,4 +1,5 @@
-﻿using ComponentsAndTags;
+﻿using Aspects;
+using Components;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -8,7 +9,7 @@ using Unity.Transforms;
 using UnityEngine;
 
 namespace Systems {
-    [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
+    [BurstCompile]
     public partial struct CollisionSystem : ISystem {
         
         [BurstCompile]
@@ -23,6 +24,7 @@ namespace Systems {
                     }
                 }
             }
+            
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }

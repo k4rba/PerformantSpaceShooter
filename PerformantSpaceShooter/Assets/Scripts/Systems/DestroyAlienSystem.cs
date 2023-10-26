@@ -1,4 +1,5 @@
-﻿using ComponentsAndTags;
+﻿using Aspects;
+using Components;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -6,11 +7,9 @@ using Unity.Mathematics;
 using UnityEngine.Rendering;
 
 namespace Systems {
-    [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
+    
+    [BurstCompile]
     public partial struct DestroyAlienSystem : ISystem {
-        public void OnCreate(ref SystemState state) {
-
-        }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {

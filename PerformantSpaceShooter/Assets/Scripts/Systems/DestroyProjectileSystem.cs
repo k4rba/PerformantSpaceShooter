@@ -1,11 +1,11 @@
-﻿using ComponentsAndTags;
+﻿using Aspects;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 
 namespace Systems {
-    [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
+    [BurstCompile]
     public partial struct DestroyProjectileSystem : ISystem {
         
         [BurstCompile]

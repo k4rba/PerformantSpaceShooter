@@ -2,7 +2,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 
-namespace ComponentsAndTags {
+namespace Aspects {
     public struct AlienSpawnPoints : IComponentData {
         public BlobAssetReference<AlienSpawnPointsBlob> Value;
     }

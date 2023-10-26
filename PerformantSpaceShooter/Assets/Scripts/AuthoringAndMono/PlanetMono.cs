@@ -1,4 +1,5 @@
-﻿using ComponentsAndTags;
+﻿using Aspects;
+using Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -11,7 +12,6 @@ namespace AuthoringAndMono {
         public GameObject SpawnerPrefab;
         public GameObject AlienPrefab;
         public float AlienSpawnRate;
-        public int NumberOfAliens;
         public uint RandomSeed;
     }
 
@@ -29,8 +29,8 @@ namespace AuthoringAndMono {
             AddComponent(entity, new PlanetRandom {
                 Value =  Random.CreateFromIndex(authoring.RandomSeed)
             });
-            AddComponent<AlienSpawnPoints>();
-            AddComponent<AlienSpawnTimer>();
+            AddComponent<AlienSpawnPoints>(entity);
+            AddComponent<AlienSpawnTimer>(entity);
             AddComponent(entity, new AmountOfAliens{Value = 0});
         }
     }
