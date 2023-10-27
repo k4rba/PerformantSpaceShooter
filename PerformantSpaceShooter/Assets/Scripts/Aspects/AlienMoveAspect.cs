@@ -22,7 +22,7 @@ namespace Aspects {
         
 
         public void Move(float deltaTime) {
-            _transform.ValueRW.Position.y += _transform.ValueRO.Position.y * WalkSpeed * deltaTime;
+            _transform.ValueRW.Position.y -= _transform.ValueRO.Position.y * -WalkSpeed * deltaTime;
             _enemyPos.ValueRW.Value = _transform.ValueRO.Position;
         }
     }

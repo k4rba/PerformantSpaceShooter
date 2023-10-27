@@ -16,13 +16,13 @@ namespace Systems {
                      SystemAPI.Query<PlayerProperties.ProjectilePrefab, LocalTransform>()
                          .WithAll<PlayerProperties.FireProjectileTag>()) {
                 var newProjectile = ecb.Instantiate(projectilePrefab.Value);
-
+    
                 var projectileTransform =
                     LocalTransform.FromPositionRotationScale(transform.Position, transform.Rotation, 0.5f);
-
+    
                 ecb.SetComponent(newProjectile, projectileTransform);
             }
-
+            
             //todo: job
             ecb.Playback(state.EntityManager);
             ecb.Dispose();

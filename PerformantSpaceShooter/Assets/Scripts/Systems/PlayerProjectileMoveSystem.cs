@@ -9,7 +9,7 @@ namespace Systems {
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             var deltaTime = SystemAPI.Time.DeltaTime;
-
+    
             foreach (var (transform, moveSpeed, projPosition) in SystemAPI
                          .Query<RefRW<LocalTransform>, PlayerProjectileMoveSpeed, RefRW<ProjectilePosition>>()) {
                 transform.ValueRW.Position.y += moveSpeed.Value * deltaTime;

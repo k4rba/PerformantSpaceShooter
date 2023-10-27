@@ -11,14 +11,14 @@ namespace Systems {
     public partial class GetPlayerInputSystem : SystemBase {
         private PlayerInputActionMap _movementActions;
         private Entity _playerEntity;
-
+    
         [BurstCompile]
         protected override void OnCreate() {
             RequireForUpdate<PlayerProperties.PlayerTag>();
             RequireForUpdate<PlayerProperties.PlayerMoveInputValue>();
             _movementActions = new PlayerInputActionMap();
         }
-
+    
         [BurstCompile]
         protected override void OnStartRunning() {
             _movementActions.Enable();
@@ -31,14 +31,14 @@ namespace Systems {
             var curMoveInput = _movementActions.PlayerInputMap.PlayerMoveInput.ReadValue<Vector2>();
             SystemAPI.SetSingleton(new PlayerProperties.PlayerMoveInputValue{Value = curMoveInput});
         }
-
+    
         [BurstCompile]
         protected override void OnStopRunning() {
             _movementActions.PlayerInputMap.PlayerShootInput.performed -= OnPlayerShoot;
             _movementActions.Disable();
             _playerEntity = Entity.Null;
         }
-
+    
         [BurstCompile]
         private void OnPlayerShoot(InputAction.CallbackContext obj) {
             if (!SystemAPI.Exists(_playerEntity)) return;

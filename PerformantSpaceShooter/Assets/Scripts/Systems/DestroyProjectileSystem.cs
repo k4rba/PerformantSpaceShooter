@@ -17,7 +17,7 @@ namespace Systems {
                     ecb.DestroyEntity(projPosition.ValueRO.AssociatedEntity);
                 }
             }
-
+    
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }

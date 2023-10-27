@@ -10,7 +10,7 @@ namespace Systems {
     
     [BurstCompile]
     public partial struct DestroyAlienSystem : ISystem {
-
+    
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
             var planetEntity = SystemAPI.GetSingletonEntity<PlanetProperties>();
@@ -22,7 +22,7 @@ namespace Systems {
                     planet.AlienAmount--;
                 }
             }
-
+    
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }

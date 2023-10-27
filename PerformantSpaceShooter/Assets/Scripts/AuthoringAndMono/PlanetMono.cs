@@ -29,7 +29,6 @@ namespace AuthoringAndMono {
             AddComponent(entity, new RandomValue() {
                 Value =  Random.CreateFromIndex(authoring.RandomSeed)
             });
-            AddComponent<AlienSpawnPoints>(entity);
             AddComponent<AlienSpawnTimer>(entity);
             AddComponent(entity, new AmountOfAliens{Value = 0});
         }

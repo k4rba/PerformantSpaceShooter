@@ -17,11 +17,11 @@ namespace Systems {
             }.Schedule();
             //todo: run ?
         }
-
+    
         [BurstCompile]
         public partial struct PlayerMoveJob : IJobEntity {
             public float DeltaTime;
-
+    
             [BurstCompile]
             private void Execute(ref LocalTransform transform, in PlayerProperties.PlayerMoveInputValue moveInput,
                 PlayerProperties.Move moveSpeed) {
@@ -29,12 +29,12 @@ namespace Systems {
                 if (math.lengthsq(moveInput.Value) > float.Epsilon) {
                     var forward = new float3(moveInput.Value.x, 0, 0);
                 }
-
-                if (transform.Position.x < -13) {
-                    transform.Position.x = -13;
+    
+                if (transform.Position.x < -25) {
+                    transform.Position.x = -25;
                 }
-                if (transform.Position.x > 13) {
-                    transform.Position.x = 13;
+                if (transform.Position.x > 25) {
+                    transform.Position.x = 25;
                 }
             }
             
