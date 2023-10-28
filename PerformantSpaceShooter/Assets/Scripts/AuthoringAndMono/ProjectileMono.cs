@@ -1,5 +1,4 @@
-﻿using Aspects;
-using Components;
+﻿using Components;
 using Unity.Entities;
 using UnityEngine;
 

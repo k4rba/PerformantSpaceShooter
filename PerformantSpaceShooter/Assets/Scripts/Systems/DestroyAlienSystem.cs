@@ -3,18 +3,16 @@ using Components;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Mathematics;
-using UnityEngine.Rendering;
 
 namespace Systems {
-    
+
     [BurstCompile]
     public partial struct DestroyAlienSystem : ISystem {
-    
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
-            var planetEntity = SystemAPI.GetSingletonEntity<PlanetProperties>();
-            var planet = SystemAPI.GetAspect<PlanetAspect>(planetEntity);
+            SystemAPI.TryGetSingletonEntity<PlanetProperties>(out Entity planetSingleton);
+            var planet = SystemAPI.GetAspect<PlanetAspect>(planetSingleton);
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach (var enemyPosition in SystemAPI.Query<RefRW<AlienProperties.AlienPosition>>()) {
                 if (enemyPosition.ValueRO.Value.y < -80f) {
@@ -22,9 +20,9 @@ namespace Systems {
                     planet.AlienAmount--;
                 }
             }
-    
+        
             ecb.Playback(state.EntityManager);
             ecb.Dispose();
         }
+        }
     }
-}

@@ -1,14 +1,18 @@
 ﻿using Aspects;
 using Unity.Burst;
-using Unity.Collections;
 using Unity.Entities;
-using UnityEngine;
 
 namespace Systems {
     [BurstCompile]
     public partial struct AlienInstantiateSystem : ISystem {
         [BurstCompile]
+        public void OnCreate(ref SystemState state) {
+          state.RequireForUpdate<BeginInitializationEntityCommandBufferSystem.Singleton>();
+        }
+
+        [BurstCompile]
         public void OnUpdate(ref SystemState state) {
+            state.CompleteDependency();
             var deltaTime = SystemAPI.Time.DeltaTime;
             var ecbSingleton = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>();
             new SpawnAlienJob() {

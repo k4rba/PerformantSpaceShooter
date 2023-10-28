@@ -1,8 +1,6 @@
-﻿using Aspects;
-using Components;
+﻿using Components;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Scenes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,7 +21,8 @@ namespace Systems {
         protected override void OnStartRunning() {
             _movementActions.Enable();
             _movementActions.PlayerInputMap.PlayerShootInput.performed += OnPlayerShoot;
-            _playerEntity = SystemAPI.GetSingletonEntity<PlayerProperties.PlayerTag>();
+            var _playerSingleton = SystemAPI.TryGetSingletonEntity<PlayerProperties.PlayerTag>(out Entity playerSingleton);
+            _playerEntity = playerSingleton;
         }
         
         [BurstCompile]

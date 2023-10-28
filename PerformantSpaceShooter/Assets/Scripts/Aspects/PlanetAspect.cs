@@ -1,12 +1,7 @@
 ﻿using Components;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
-using Utilities;
 
 namespace Aspects {
     public readonly partial struct PlanetAspect : IAspect {
@@ -20,6 +15,8 @@ namespace Aspects {
 
         private readonly RefRW<RandomValue> _randValue;
 
+        private readonly RefRW<AlienSpawnRate> _alienSpawnRate;
+
         public int AlienAmount {
             get => _amntOfAliens.ValueRO.Value;
             set => _amntOfAliens.ValueRW.Value = value;
@@ -32,7 +29,10 @@ namespace Aspects {
 
         public bool TimeToSpawnAlien => AlienSpawnTimer <= 0f;
 
-        public float AlienSpawnRate => _planetProperties.ValueRO.AlienSpawnRate;
+        public float AlienSpawnRate {
+            get => _alienSpawnRate.ValueRO.Value;
+            set => _alienSpawnRate.ValueRW.Value = value;
+        }
 
         public Entity AlienPrefab => _planetProperties.ValueRO.AlienPrefab;
 

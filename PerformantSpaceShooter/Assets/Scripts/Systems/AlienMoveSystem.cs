@@ -1,8 +1,6 @@
 ﻿using Aspects;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Scenes;
-using Unity.Transforms;
 
 namespace Systems {
     [BurstCompile]
