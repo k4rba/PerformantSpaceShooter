@@ -29,6 +29,10 @@ namespace AuthoringAndMono {
             AddComponent<AlienSpawnTimer>(entity);
             AddComponent(entity, new AmountOfAliens{Value = 0});
             AddComponent(entity, new AlienSpawnRate{Value = 1});
+            AddComponent(entity, new EnemySpawnTimerProperties {
+                timer = 0f,
+                interval = 2.5f
+            });
         }
     }
 }

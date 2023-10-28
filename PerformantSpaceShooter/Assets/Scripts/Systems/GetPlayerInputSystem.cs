@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Systems {
+    [UpdateInGroup(typeof(InitializationSystemGroup), OrderLast = true)]
     [BurstCompile]
     public partial class GetPlayerInputSystem : SystemBase {
         private PlayerInputActionMap _movementActions;

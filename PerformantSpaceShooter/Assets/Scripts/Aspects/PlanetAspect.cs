@@ -17,6 +17,15 @@ namespace Aspects {
 
         private readonly RefRW<AlienSpawnRate> _alienSpawnRate;
 
+        private readonly RefRW<EnemySpawnTimerProperties> _enemySpawnProperties;
+
+        public float EnemySpawnInterval => _enemySpawnProperties.ValueRO.interval;
+
+        public float EnemySpawnTimer {
+            get => _enemySpawnProperties.ValueRO.timer;
+            set => _enemySpawnProperties.ValueRW.timer = value;
+        }
+
         public int AlienAmount {
             get => _amntOfAliens.ValueRO.Value;
             set => _amntOfAliens.ValueRW.Value = value;
@@ -33,6 +42,7 @@ namespace Aspects {
             get => _alienSpawnRate.ValueRO.Value;
             set => _alienSpawnRate.ValueRW.Value = value;
         }
+        
 
         public Entity AlienPrefab => _planetProperties.ValueRO.AlienPrefab;
 

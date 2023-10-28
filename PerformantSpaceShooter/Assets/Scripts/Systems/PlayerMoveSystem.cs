@@ -8,14 +8,13 @@ namespace Systems {
     [BurstCompile]
     [UpdateBefore(typeof(TransformSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem {
-        
         [BurstCompile]
         public void OnUpdate(ref SystemState state) {
+            state.CompleteDependency();
             var deltaTime = SystemAPI.Time.DeltaTime;
             new PlayerMoveJob {
                 DeltaTime = deltaTime
             }.Schedule();
-            //todo: run ?
         }
     
         [BurstCompile]

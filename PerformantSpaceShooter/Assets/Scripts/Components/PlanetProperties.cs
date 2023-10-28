@@ -29,4 +29,9 @@ namespace Components {
 
     public struct PlanetTag : IComponentData {
     }
+
+    public struct EnemySpawnTimerProperties : IComponentData {
+        public float timer;
+        public float interval;
+    }
 }
