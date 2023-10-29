@@ -1,6 +1,6 @@
 # PerformantSpaceShooter by Joakim Karbing
 
-I made this assignment using Unity Entities (DOTS) which optimizes the game for how computers store and process data. The efficiency comes from separating the data associated with an entity/object from the logic. Structs are allocated in stack, and since the stack works faster than heap using almost only structs also contributes to the efficiency. I tested the project pre-final build where i had over 100.000 entities moving at the same time with barely any difference in performance which is amazing.
+I made this assignment using Unity Entities (DOTS) which optimizes the game for how computers store and process data. A bigger part of the efficiency comes from separating the data associated with an entity/object from the logic and using structs. Structs are allocated in stack, and since the stack works faster than heap using almost only structs greatly contributes to the efficiency.
 
 The first big issue i encountered was sudden spikes in MS as great as going from steady 4ms, to ~1300ms for a frame. By using the profiler, i tracked this down to being VSYNC related and was fixed by disabling vsync.
 ![Profiler_Vsync_Spike](https://github.com/k4rba/PerformantSpaceShooter/assets/22280392/0a9f9628-1e4f-4a1d-befa-8ae102faa4eb)
