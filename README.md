@@ -16,3 +16,5 @@ I did some research on this, and discovered that these drops in memory are due t
 
 
 I created this project while strictly following rules provided by the Unity ECS community and the official documentation. Although there has been many optimizations happening along the way, at this point i'm not exactly sure what i can do to change the code to improve performance and prove that it actually affects anything since its already running steadily at so few ms.
+
+Thank you for reading :)
