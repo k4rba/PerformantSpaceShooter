@@ -1,4 +1,4 @@
-# PerformantSpaceShooter
+# PerformantSpaceShooter by Joakim Karbing
 
 I made this assignment using Unity Entities (DOTS) which optimizes the game for how computers store and process data. The efficiency comes from separating the data associated with an entity/object from the logic. Structs are allocated in stack, and since the stack works faster than heap using almost only structs also contributes to the efficiency. I tested the project pre-final build where i had over 100.000 entities moving at the same time with barely any difference in performance which is amazing.
 
